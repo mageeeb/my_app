@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EtudiantContollerController!{% endblock %}
+
+{% block body %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Genre</th>
+            <th>Classe</th>
+            <th>Moyenne générale</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for etudiant in etudiants %}
+            <tr>
+                <td>{{ etudiant.nom }}</td>
+                <td>{{ etudiant.prenom }}</td>
+                <td>{{ etudiant.dateNaissance|date('d/m/Y') }}</td>
+                <td>{{ etudiant.genre == 'M' ? 'Masculin' : 'Féminin' }}</td>
+                <td>{{ etudiant.classe }}</td>
+                <td>{{ etudiant.getMoyenneGenerale() ?? 'Non calculée' }}</td>
+                <td>
+                    <a href="{{ path('etudiant_show', {id: etudiant.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun stagiaire trouvé.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
