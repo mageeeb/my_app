@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'étudiant{% endblock %}
+
+{% block body %}
+    <h1>Détails de l'étudiant</h1>
+
+    <ul>
+        <li><strong>Nom :</strong> {{ etudiant.nom }}</li>
+        <li><strong>Prénom :</strong> {{ etudiant.prenom }}</li>
+        <li><strong>Date de naissance :</strong> {{ etudiant.dateNaissance|date('d/m/Y') }}</li>
+        <li><strong>Genre :</strong> {{ etudiant.genre == 'M' ? 'Masculin' : 'Féminin' }}</li>
+        <li><strong>Classe :</strong> {{ etudiant.classe }}</li>
+        <li><strong>Moyenne générale :</strong> {{ etudiant.getMoyenneGenerale() ?? 'Non calculée' }}</li>
+        {% if etudiant.image %}
+            <li><strong>Photo :</strong> <img src="{{ asset('uploads/' ~ etudiant.image) }}" alt="{{ etudiant.nom }}" width="100"></li>
+        {% endif %}
+    </ul>
+
+    <a href="{{ path('etudiants_list') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

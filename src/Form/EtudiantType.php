@@ -32,9 +32,10 @@ class EtudiantType extends AbstractType
                     'Classe 2' => 'classe_2',
                 ],
             ])
-            ->add('photo', FileType::class, [
+            ->add('image', FileType::class, [
                 'required' => false,
-                'mapped' => false, // Ce champ n'est pas lié à l'entité
+                'label' => 'Photo',
+                'mapped' => true, // Champ lié à la propriété `image` de l'entité
             ]);
     }
 
